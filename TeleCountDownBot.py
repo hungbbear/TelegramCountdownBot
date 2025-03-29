@@ -2,10 +2,9 @@ from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
 
 from datetime import datetime
-from persiantools.jdatetime import JalaliDateTime
 
-def remaining_time_from_khayyam(year, month, day, hour, minute, second):
-    target_gregorian_datetime = JalaliDateTime(year, month, day, hour, minute, second).to_gregorian()
+def remaining_time_from_gregorian(year, month, day, hour, minute, second):
+    target_gregorian_datetime = datetime(year, month, day, hour, minute, second)
 
     current_gregorian_datetime = datetime.now()
 
@@ -17,23 +16,23 @@ def remaining_time_from_khayyam(year, month, day, hour, minute, second):
 
     return remaining_days, remaining_hours, remaining_minutes, remaining_seconds
 
-#your persian Date time you want count here 
-future_khayyam_year = 1402
-future_khayyam_month = 12
-future_khayyam_day = 17
-future_khayyam_hour = 9
-future_khayyam_minute = 0
-future_khayyam_second = 0
+# Your Gregorian Date time you want to count here 
+future_gregorian_year = 2024
+future_gregorian_month = 3
+future_gregorian_day = 7
+future_gregorian_hour = 9
+future_gregorian_minute = 0
+future_gregorian_second = 0
 
-remaining_days, remaining_hours, remaining_minutes, remaining_seconds = remaining_time_from_khayyam(
-    future_khayyam_year, future_khayyam_month, future_khayyam_day,
-    future_khayyam_hour, future_khayyam_minute, future_khayyam_second
+remaining_days, remaining_hours, remaining_minutes, remaining_seconds = remaining_time_from_gregorian(
+    future_gregorian_year, future_gregorian_month, future_gregorian_day,
+    future_gregorian_hour, future_gregorian_minute, future_gregorian_second
 )
 
 
 def msg(remaining_days, remaining_hours, remaining_minutes, remaining_seconds):
     
-    msg = f"🎈زمان باقی مانده تا مسابقه نهایی: {remaining_days} روز, {remaining_hours} ساغت, {remaining_minutes} دقیقه, {remaining_seconds} ثانیه\n"
+    msg = f"🎈Remaining time until the final competition: {remaining_days} days, {remaining_hours} hours, {remaining_minutes} minutes, {remaining_seconds} seconds\n"
     return msg
 
 
@@ -44,9 +43,9 @@ def start(update: Update, context: CallbackContext) -> None:
 
 def time(update: Update, context: CallbackContext) -> None:
     chat_id = update.message.chat_id
-    context.bot.send_message(chat_id, msg(*remaining_time_from_khayyam(
-    future_khayyam_year, future_khayyam_month, future_khayyam_day,
-    future_khayyam_hour, future_khayyam_minute, future_khayyam_second
+    context.bot.send_message(chat_id, msg(*remaining_time_from_gregorian(
+    future_gregorian_year, future_gregorian_month, future_gregorian_day,
+    future_gregorian_hour, future_gregorian_minute, future_gregorian_second
 )))
 
 def main() -> None:

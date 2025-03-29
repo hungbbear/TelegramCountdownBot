@@ -1,13 +1,12 @@
 # Telegram Countdown Bot
 
 ## Description
-This Telegram bot calculates and displays the remaining time until a specified date and time. It uses the Persian (Jalali) calendar for the target date and time.
+This Telegram bot calculates and displays the remaining time until a specified date and time. It uses the Gregorian calendar for the target date and time.
 
 ## Features
-- 📅 Countdown to a specific Persian (Jalali) date and time.
+- 📅 Countdown to a specific Gregorian date and time.
 - 🤖 Responds to the `/time` command to provide the remaining days, hours, minutes, and seconds.
 - 🌐 Utilizes the `python-telegram-bot` library for Telegram bot interactions.
-- 🕰️ Integrates the `persiantools` library for Persian (Jalali) date calculations.
 
 ## Usage
 1. Invite the bot to your Telegram group.
@@ -24,4 +23,3 @@ This Telegram bot calculates and displays the remaining time until a specified d
 ## Requirements
 Python 3.x
 python-telegram-bot (v13.7)
-persiantools
